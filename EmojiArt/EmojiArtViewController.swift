@@ -18,19 +18,23 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate {
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        print("got images NRB 1 can handle called")
         return session.canLoadObjects(ofClass: NSURL.self) && session.canLoadObjects(ofClass: UIImage.self)
     }
     
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        print("got images NRB copy called")
         return UIDropProposal(operation: .copy)
     }
     
     var imageFetcher: ImageFetcher!
     
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        
+        print("got images NRB 1")
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
+                print("got images NRB ")
+                print(image)
                 self.emojiArtView.backgroundImage = image
             }
             
